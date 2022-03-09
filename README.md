@@ -1,2 +1,2 @@
-# facial_recognition
-An extension of the facial recognition application
+# Traffic Sign Classification with GTSRB
+Pushing the limit of robot cognition by creating a pipeline for Traffic Sign Classification
