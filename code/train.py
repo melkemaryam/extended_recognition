@@ -97,9 +97,7 @@ class Train_Net:
 	def get_sign_names(self):
 		
 		# load sign names
-		#CHANGE: _rl = turn right/left only, _all = all signs
-		sign_names = open("../sign_names_all.csv").read().strip().split("\n")[1:]
-		#sign_names = open("../sign_names_rl.csv").read().strip().split("\n")[1:]
+		sign_names = open("../sign_names.csv").read().strip().split("\n")[1:]
 		
 		sign_names = [s.split(";")[1] for s in sign_names]
 
@@ -171,9 +169,7 @@ class Train_Net:
 		# train the network
 		print("[INFO] training network...")
 
-		#CHANGE: _rl = turn right/left only, _all = all signs
-		log_dir = "../logs_all/fit_" + str(self.number_of_epochs) + "_" + str(self.batch_size) + "_" + str(self.initial_learning_rate) +"/" + datetime.now().strftime("%Y%m%d-%H%M%S")
-		#log_dir = "../logs_rl/fit_" + str(self.number_of_epochs) + "_" + str(self.batch_size) + "_" + str(self.initial_learning_rate) +"/" + datetime.now().strftime("%Y%m%d-%H%M%S")
+		log_dir = "../logs/fit_" + str(self.number_of_epochs) + "_" + str(self.batch_size) + "_" + str(self.initial_learning_rate) +"/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 
 		tensorboard = TensorBoard(log_dir=log_dir, histogram_freq=1)
 
@@ -205,9 +201,7 @@ class Train_Net:
 
 		self.epochs_run = len(train.history['loss'])
 
-		#CHANGE: _rl = turn right/left only, _all = all signs
 		file = open("../reports_all/test_report_" + str(self.number_of_epochs) + "_" + str(self.batch_size) + "_" + str(self.initial_learning_rate) +".txt", "a")
-		#file = open("../reports_rl/test_report_" + str(self.number_of_epochs) + "_" + str(self.batch_size) + "_" + str(self.initial_learning_rate) +".txt", "a")
 
 		file.write("This is iteration no: " + str(i) + " with epochs = " + str(self.epochs_run) + ", batch size = " + str(self.batch_size) + ", and learning rate = " + str(self.initial_learning_rate) +" \n")
 		file.write(report)

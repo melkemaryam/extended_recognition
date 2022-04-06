@@ -73,3 +73,24 @@ class Predict_Net:
 			p = os.path.sep.join([self.args["predictions"], "{}.png".format(i)])
 
 			cv2.imwrite(p, image)
+
+
+if __name__ == '__main__':
+	try:
+		
+		a = Args()
+		args = a.parse_arguments()
+
+		# create objects of training and predicting classes
+		tr = Train_Net()
+		hp = Hyper_band()
+		bs = Bayesian_Optimisation()
+		rs = Random_Search()
+		p = Predict_Net()
+
+		print("[INFO] Predicting images only")
+		
+		p.main_predict_net()
+
+	except KeyboardInterrupt:
+		pass

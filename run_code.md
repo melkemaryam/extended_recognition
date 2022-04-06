@@ -1,6 +1,6 @@
 # How to run the code
 
-### 1. Start Virtual Environment
+### 1. Start Virtual Environment (if necessary)
 
 ```
 $ source ~/.bashrc
@@ -17,48 +17,44 @@ $ cd extended_recognition/code
 There are 5 arguments that need to be added when runing the code. The `class Args()` can be seen in `arguments.py`. 
 
 * `-m` or `--model` to add the path to the output model
-* `-op` or `--optimiser` to add the optimisation methods to use
+* `-op` or `--optimiser` to add the optimisation methods to use (optional)
 * `-d`or `--dataset` to add the path to the input dataset
 * `-i`or `--images` to add the path to the testing directory containing images
 * `-pr`or `--predictions` to add the path to the output predictions directory
 
 ### 4. Run line in shell
 
-Depending on which database you want to train with, you can choose between only two traffic signs (turn right and turn left) or you can choose all 43. 
+The framework can be run through a command in the terminal. The `main.py` file will be run with the correct arguments. 
 
-The default is set to only two traffic signs, which can be identified by the `_rl` addition. If you want to train the model with all 43 traffic signs, replace `_rl` with `_all`.
+The following code will train and test the neural network with the assigned dataset.
 
-Default command for only two traffic signs:
 ```
-$ python3 main.py --model ../output/neural_net.model --dataset ../gtsrb_rl --images ../gtsrb_rl/Test --predictions ../predictions_rl
-```
-
-Command for all 43 traffic signs:
-```
-$ python3 main.py --model ../output/neural_net.model --dataset ../gtsrb_all --images ../gtsrb_all/Test --predictions ../predictions_all
+$ python3 main.py --model ../output/neural_net.model --dataset ../gtsrb --images ../gtsrb/Test --predictions ../predictions
 ```
 
-In case you want to train with the entire dataset, make sure to also change the paths within the `train.py` file. There are four lines marked with `#CHANGE`, all you need to do is uncomment/comment the lines you need
+When optimising the neural network, add the `optimiser` argument as shown below.
 
 ### 5. Run optimisations
 
 #### Bayesian Optimisation:
 
 ```
-$ python3 main.py --model ../output/bayesian.model --optimiser bayesian --dataset ../gtsrb_all --images ../gtsrb_all/Test --predictions ../predictions_all
+$ python3 main.py --model ../output/bayesian.model --optimiser bayesian --dataset ../gtsrb --images ../gtsrb/Test --predictions ../predictions
 ```
 
 #### Hyperband Optimisation:
 
 ```
-$ python3 main.py --model ../output/hyperband.model --optimiser hyperband --dataset ../gtsrb_all --images ../gtsrb_all/Test --predictions ../predictions_all
+$ python3 main.py --model ../output/hyperband.model --optimiser hyperband --dataset ../gtsrb --images ../gtsrb/Test --predictions ../predictions
 ```
 
 #### Random Search:
 
 ```
-$ python3 main.py --model ../output/random_search.model --optimiser random --dataset ../gtsrb_all --images ../gtsrb_all/Test --predictions ../predictions_all
+$ python3 main.py --model ../output/random_search.model --optimiser random --dataset ../gtsrb --images ../gtsrb/Test --predictions ../predictions
 ```
+
+Make sure to always provide the correct model path in combination with the correct optimiser. 
 
 
 ## Results
@@ -70,3 +66,17 @@ A classification report will appear with the prediction accuracy.
 The precdiction will be continued and 30 images will be used to predict the correct label.
 
 In the directory `extended_recognition/predictions` the images can be viewed with their predicted labels.
+
+## Using the final model
+
+Once the best accuracy could be achieved, the corresponding model is already saved in the `output` folder. In order to use the model to predict images only (hence, without training, testing, or optimising), the `predict.py` file can be run with the same arguments.
+
+An example:
+
+```
+$ python3 predict.py --model ../output/neural_net.model --dataset ../gtsrb --images ../gtsrb/Test --predictions ../predictions
+```
+
+The predicted images can then be viewed in the assigned folder.
+
+

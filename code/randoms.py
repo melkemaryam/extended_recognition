@@ -146,7 +146,7 @@ class Random_Search:
 	def get_sign_names(self):
 		
 		# load sign names
-		sign_names = open("../sign_names_all.csv").read().strip().split("\n")[1:]
+		sign_names = open("../sign_names.csv").read().strip().split("\n")[1:]
 		
 		sign_names = [s.split(";")[1] for s in sign_names]
 
@@ -217,7 +217,7 @@ class Random_Search:
 
 	def write_report(self, report):
 
-		file = open("../reports_all/random_search/test_report_rs.txt", "a")
+		file = open("../reports/random_search/test_report_rs.txt", "a")
 
 		file.write(str(report))
 		file.write("\n")

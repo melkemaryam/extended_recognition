@@ -141,7 +141,7 @@ class Hyper_band:
 	def get_sign_names(self):
 		
 		# load sign names
-		sign_names = open("../sign_names_all.csv").read().strip().split("\n")[1:]
+		sign_names = open("../sign_names.csv").read().strip().split("\n")[1:]
 		
 		sign_names = [s.split(";")[1] for s in sign_names]
 
@@ -212,7 +212,7 @@ class Hyper_band:
 
 	def write_report(self, report):
 
-		file = open("../reports_all/hyperband/test_report_hb.txt", "a")
+		file = open("../reports/hyperband/test_report_hb.txt", "a")
 
 		file.write(str(report))
 		file.write("\n")

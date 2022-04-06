@@ -44,3 +44,18 @@ $ pip install matplotlib
 $ pip install tensorflow # or tensorflow-gpu
 ```
 
+## Note
+
+A virtual environment is not necessary in order to run the framework, however, it is recommended in order to protect the data and devices.
+
+If working without a virtual environment, please make sure that all necessary libraries are installed. If not, install them like this:
+
+```
+$ pip3 install opencv-contrib-python
+$ pip3 install numpy
+$ pip3 install scikit-learn
+$ pip3 install scikit-image
+$ pip3 install imutils
+$ pip3 install matplotlib
+$ pip3 install tensorflow # or tensorflow-gpu
+```
